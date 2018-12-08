@@ -9,6 +9,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>", error = TRUE)
 #' <https://adventofcode.com/2018/day/5>
 
 library(testthat)
+library(purrr)
 
 #' Part 1, recursive R solution
 react_detect <- function(x) {
@@ -42,7 +43,7 @@ nchar(x)
 ## nchar(react(x))
 ## Error: C stack usage  7970432 is too close to the limit
 
-#' Part 12, C++ string based solution
+#' Part 1, C++ `std::string` based solution
 Rcpp::sourceCpp("day05.cpp")
 
 expect_identical(react_cpp("aA"),     "")
@@ -53,3 +54,31 @@ expect_identical(react_cpp("dabAcCaCBAcCcaDA"), "dabCBAcaDA")
 
 #' Now with my input.
 nchar(react_cpp(x))
+
+#' Part 2, please God let my part 1 solution be truly useful.
+#'
+#' What "unit types" (letters) do I even have in my input?
+x_split <- strsplit(x, split = "")[[1]]
+x_split %>%
+  toupper() %>%
+  unique() %>%
+  sort()
+#' Looks like the whole alphabet.
+#'
+#' First, reproduce the example.
+example <- "dabAcCaCBAcCcaDA"
+n <- letters %>%
+  set_names() %>%
+  map(~ gsub(.x, "", example, ignore.case = TRUE)) %>%
+  map(react_cpp) %>%
+  map_int(nchar)
+n[which.min(n)]
+
+#' My input.
+n <- letters %>%
+  set_names() %>%
+  map(~ gsub(.x, "", x, ignore.case = TRUE)) %>%
+  map(react_cpp) %>%
+  map_int(nchar)
+n[which.min(n)]
+

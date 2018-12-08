@@ -1,5 +1,4 @@
 #include <string>
-#include <algorithm>
 #include <Rcpp.h>
 
 // [[Rcpp::export]]

@@ -1,12 +1,18 @@
 Day 5: Alchemical Reduction
 ================
 jenny
-Fri Dec 7 10:57:29 2018
+Fri Dec 7 19:58:04 2018
 
 <https://adventofcode.com/2018/day/5>
 
 ``` r
 library(testthat)
+library(purrr)
+#> 
+#> Attaching package: 'purrr'
+#> The following object is masked from 'package:testthat':
+#> 
+#>     is_null
 ```
 
 Part 1, recursive R solution
@@ -49,7 +55,7 @@ nchar(x)
 ## Error: C stack usage  7970432 is too close to the limit
 ```
 
-Part 12, C++ string based solution
+Part 1, C++ `std::string` based solution
 
 ``` r
 Rcpp::sourceCpp("day05.cpp")
@@ -66,4 +72,47 @@ Now with my input.
 ``` r
 nchar(react_cpp(x))
 #> [1] 11894
+```
+
+Part 2, please God let my part 1 solution be truly useful.
+
+What “unit types” (letters) do I even have in my input?
+
+``` r
+x_split <- strsplit(x, split = "")[[1]]
+x_split %>%
+  toupper() %>%
+  unique() %>%
+  sort()
+#>  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q"
+#> [18] "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
+```
+
+Looks like the whole alphabet.
+
+First, reproduce the example.
+
+``` r
+example <- "dabAcCaCBAcCcaDA"
+n <- letters %>%
+  set_names() %>%
+  map(~ gsub(.x, "", example, ignore.case = TRUE)) %>%
+  map(react_cpp) %>%
+  map_int(nchar)
+n[which.min(n)]
+#> c 
+#> 4
+```
+
+My input.
+
+``` r
+n <- letters %>%
+  set_names() %>%
+  map(~ gsub(.x, "", x, ignore.case = TRUE)) %>%
+  map(react_cpp) %>%
+  map_int(nchar)
+n[which.min(n)]
+#>    k 
+#> 5310
 ```
