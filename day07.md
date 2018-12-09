@@ -1,7 +1,7 @@
 Day 7: The Sum of Its Parts
 ================
 jenny
-Sun Dec 9 09:42:58 2018
+Sun Dec 9 13:05:39 2018
 
 <https://adventofcode.com/2018/day/7>
 
@@ -110,7 +110,7 @@ g_ex <- as_tbl_graph(ex)
 sugiyama(g_ex)
 ```
 
-![](day7_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](day07_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 Reproduce example result
 
@@ -131,7 +131,7 @@ g_day7 <- as_tbl_graph(day7)
 sugiyama(g_day7)
 ```
 
-![](day7_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](day07_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 ``` r
 
