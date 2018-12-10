@@ -45,3 +45,34 @@ y <- get_metadata(day08)
 length(day08)
 length(y)
 sum(y)
+
+#' part 2
+get_value <- function(x) {
+  read_node <- function() {
+    if (i > length(x)) return()
+    n_nodes <- x[i]; i <<- i + 1
+    n_meta  <- x[i]; i <<- i + 1
+
+    node_values <- integer()
+    for (j in seq_len(n_nodes)) {
+      node_values <- append(node_values, read_node())
+    }
+
+    meta_values <- integer()
+    for (j in seq_len(n_meta)) {
+      meta_values <- append(meta_values, x[i]); i <<- i + 1
+    }
+
+    if (n_nodes == 0) {
+      sum(meta_values)
+    } else {
+      sum(node_values[meta_values], na.rm = TRUE)
+    }
+  }
+  i <- 1
+  read_node()
+}
+
+get_value(ex)
+
+get_value(day08)
