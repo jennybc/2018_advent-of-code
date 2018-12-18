@@ -1,7 +1,7 @@
 Day 6: Chronal Coordinates
 ================
 jenny
-Sat Dec 8 12:31:04 2018
+Tue Dec 18 12:17:01 2018
 
 <https://adventofcode.com/2018/day/6>
 
