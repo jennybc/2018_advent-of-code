@@ -1,7 +1,7 @@
 Day 7: The Sum of Its Parts
 ================
 jenny
-Sun Dec 9 13:05:39 2018
+Tue Dec 18 12:27:56 2018
 
 <https://adventofcode.com/2018/day/7>
 
@@ -45,7 +45,7 @@ sugiyama <- function(g) {
   ## hierarchies where multiple parents are allowed) it minimizes the number of
   ## crossing edges"
   ggraph(g, layout = "sugiyama") +
-    geom_node_text(aes(label = name, size = 5)) +
+    geom_node_text(size = 5, aes(label = name)) +
     geom_edge_link(arrow = arrow(length = unit(4, 'mm')),
                    start_cap = circle(3, 'mm'),
                    end_cap = circle(3, 'mm')) +

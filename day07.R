@@ -21,7 +21,7 @@ sugiyama <- function(g) {
   ## hierarchies where multiple parents are allowed) it minimizes the number of
   ## crossing edges"
   ggraph(g, layout = "sugiyama") +
-    geom_node_text(aes(label = name, size = 5)) +
+    geom_node_text(size = 5, aes(label = name)) +
     geom_edge_link(arrow = arrow(length = unit(4, 'mm')),
                    start_cap = circle(3, 'mm'),
                    end_cap = circle(3, 'mm')) +
